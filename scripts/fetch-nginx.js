@@ -30,6 +30,7 @@ var TYPE_LINE_REGEXP = /^\s*([\w-]+\/[\w+.-]+)((?:\s+[\w-]+)*);\s*$/gm
 var URL = 'https://raw.githubusercontent.com/nginx/nginx/master/conf/mime.types'
 
 ;(async function () {
+  console.log('Fetching NGINX mime types...')
   const res = await got(URL)
 
   var json = {}
@@ -50,6 +51,7 @@ var URL = 'https://raw.githubusercontent.com/nginx/nginx/master/conf/mime.types'
     appendExtensions(data, extensions)
   }
 
+  console.log('Writing NGINX mime types...')
   writedb('src/nginx-types.json', json)
 }())
 

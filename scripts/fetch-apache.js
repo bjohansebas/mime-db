@@ -32,6 +32,7 @@ var TYPE_LINE_REGEXP = /^(?:# )?([\w-]+\/[\w+.-]+)((?:\s+[\w-]+)*)$/gm
 var URL = 'https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types'
 
 ;(async function () {
+  console.log('Fetching Apache mime types...')
   const res = await got(URL)
 
   var json = {}
@@ -56,6 +57,7 @@ var URL = 'https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.typ
     appendExtensions(data, extensions)
   }
 
+  console.log('Writing Apache mime types...')
   writedb('src/apache-types.json', json)
 }())
 

@@ -34,6 +34,7 @@ var MIME_SUBTYPE_LINE_REGEXP = /^[^:\s-]*\s*(?:MIME )?(?:[Mm]edia )?(?:[Ss]ub ?t
 var MIME_TYPE_HAS_CHARSET_PARAMETER_REGEXP = /parameters\s*:[^.]*\bcharset\b/im
 
 ;(async function () {
+  console.log('Fetching IANA mime types...')
   const results = Array.prototype.concat.apply([], [
     await get('application', { extensions: /(?:\/(?:automationml-amlx?\+.+|cwl|ecmascript|express|fdf|gzip|(?:ld|manifest)\+json|mp4|n-quads|n-triples|pgp-.+|sql|trig|vnd\.(?:age|apple\..+|dbf|mapbox-vector-tile|rar))|xfdf|\+xml)$/ }),
     await get('audio', { extensions: /\/(?:aac|mobile-xmf)$/ }),
@@ -84,6 +85,7 @@ var MIME_TYPE_HAS_CHARSET_PARAMETER_REGEXP = /parameters\s*:[^.]*\bcharset\b/im
     }
   })
 
+  console.log('Writing IANA mime types...')
   writedb('src/iana-types.json', json)
 }())
 
