@@ -215,6 +215,7 @@ function extractTemplateExtensions (body) {
 }
 
 async function get (type, options) {
+  console.log('Fetching IANA mime types for ' + type + '...')
   const res = await got('https://www.iana.org/assignments/media-types/' + encodeURIComponent(type) + '.csv')
 
   if (res.statusCode !== 200) {
