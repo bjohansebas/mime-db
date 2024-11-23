@@ -218,16 +218,13 @@ async function get (type, options) {
   console.log('Fetching IANA mime types for ' + type + '...')
   try {
 
-    const res = await got('https://www.iana.org/assignments/media-types/' + encodeURIComponent(type) + '.csv')
-  } catch (e){
-console.log(e)
-  }
-    
-    if (res.statusCode !== 200) {
-    throw new Error('got status code ' + res.statusCode + ' from ' + type)
-  }
+   const res = await got('https://www.iana.org/assignments/media-types/' + encodeURIComponent(type) + '.csv')
 
-  const mimes = await toArray(parser(res.body))
+    if (res.statusCode !== 200) {
+      throw new Error('got status code ' + res.statusCode + ' from ' + type)
+    }
+
+    const mimes = await toArray(parser(res.body))
   var headers = mimes.shift().map(normalizeHeader)
   var reduceRows = generateRowMapper(headers)
   const results = []
@@ -268,6 +265,13 @@ console.log(e)
   }
 
   return results
+  } catch (e){
+console.log(e)
+  }
+    
+  
+
+  
 }
 
 function getTemplateBody (body) {
