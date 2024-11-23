@@ -39,7 +39,7 @@ var MIME_TYPE_HAS_CHARSET_PARAMETER_REGEXP = /parameters\s*:[^.]*\bcharset\b/im
     await get('application', { extensions: /(?:\/(?:automationml-amlx?\+.+|cwl|ecmascript|express|fdf|gzip|(?:ld|manifest)\+json|mp4|n-quads|n-triples|pgp-.+|sql|trig|vnd\.(?:age|apple\..+|dbf|mapbox-vector-tile|rar))|xfdf|\+xml)$/ }),
     await get('audio', { extensions: /\/(?:aac|mobile-xmf)$/ }),
     await get('font', { extensions: true }),
-    await get('image', { extensions: true }),
+    // await get('image', { extensions: true }),
     await get('message', { extensions: true }),
     await get('model', { extensions: true }),
     await get('multipart'),
