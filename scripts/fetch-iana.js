@@ -94,9 +94,14 @@ async function addTemplateData (data, options) {
     return
   }
 
-  let res = await got('https://www.iana.org/assignments/media-types/' + data.template)
-  var ref = data.type + '/' + data.name
-  var rfc = getRfcReferences(data.reference)[0]
+  let res
+  try {
+    res = await got('https://www.iana.org/assignments/media-types/' + data.template)
+    var ref = data.type + '/' + data.name
+    var rfc = getRfcReferences(data.reference)[0]
+  } catch (err) {
+    console.log(err)
+  }
 
   if (res.statusCode === 404 && data.template !== ref) {
     console.log('template ' + data.template + ' not found, retry as ' + ref)
