@@ -35,15 +35,15 @@ var MIME_TYPE_HAS_CHARSET_PARAMETER_REGEXP = /parameters\s*:[^.]*\bcharset\b/im
 
 ;(async function () {
   const results = Array.prototype.concat.apply([], [
-    await get('application', { extensions: /(?:\/(?:automationml-amlx?\+.+|cwl|ecmascript|express|fdf|gzip|(?:ld|manifest)\+json|mp4|n-quads|n-triples|pgp-.+|sql|trig|vnd\.(?:age|apple\..+|dbf|mapbox-vector-tile|rar))|xfdf|\+xml)$/ }),
-    await get('audio', { extensions: /\/(?:aac|mobile-xmf)$/ }),
+    await get('application', { extensions: true }),
+    await get('audio', { extensions: true }),
     await get('font', { extensions: true }),
     await get('image', { extensions: true }),
     await get('message', { extensions: true }),
     await get('model', { extensions: true }),
     await get('multipart'),
-    await get('text', { extensions: /\/(?:javascript|markdown|spdx|turtle|vnd\.familysearch\.gedcom|vtt|wgsl)$/ }),
-    await get('video', { extensions: /\/iso\.segment$/ })
+    await get('text', { extensions: true }),
+    await get('video', { extensions: true })
   ])
 
   // gather extension frequency
@@ -213,6 +213,8 @@ function extractTemplateExtensions (body) {
     ? undefined
     : exts
 }
+
+module.exports.extractTemplateExtensions = extractTemplateExtensions
 
 async function get (type, options) {
   const res = await request('https://www.iana.org/assignments/media-types/' + encodeURIComponent(type) + '.csv')
