@@ -21,7 +21,6 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    container: ubuntu:18.04
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
@@ -37,6 +36,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    container: ubuntu:20.04
     strategy:
       fail-fast: false
       matrix:
