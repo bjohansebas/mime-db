@@ -36,7 +36,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    container: ubuntu:20.04
+
     strategy:
       fail-fast: false
       matrix:
@@ -71,6 +71,7 @@ jobs:
 
         include:
         - name: Node.js 0.6
+          container: ubuntu:20.04
           node-version: "0.6"
           npm-i: mocha@1.21.5
           npm-rm: nyc
@@ -167,8 +168,13 @@ jobs:
 
         - name: Node.js 23.x
           node-version: "23"
-
+    image: ${{matrix.container}}
     steps:
+    - name: Setup container environment
+        if: matrix.container
+        run: |
+          apt-get update
+          apt-get -y install sudo python3 git g++ curl
     - uses: actions/checkout@v4
 
     - name: Install Node.js ${{ matrix.node-version }}
