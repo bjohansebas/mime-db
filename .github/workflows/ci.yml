@@ -175,6 +175,7 @@ jobs:
       run: |
         if [[ "${{ matrix.node-version }}" == 0.6* ]]; then
           sudo sh -c 'echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" >> /etc/apt/sources.list'
+          sudo apt-key adv --keyserver us.archive.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
           sudo apt-get update
           sudo apt-get install g++-4.8 gcc-4.8 libssl1.0-dev python2 python-is-python2
           export CC=/usr/bin/gcc-4.8
