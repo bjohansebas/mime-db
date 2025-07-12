@@ -168,8 +168,12 @@ jobs:
 
         - name: Node.js 23.x
           node-version: "23"
-
+    container: ubuntu:20.04
     steps:
+    - name: Setup container environment
+      run: |
+        apt-get update
+        apt-get -y install sudo python3 git g++ curl
     - uses: actions/checkout@v4
 
     - name: Install Node.js ${{ matrix.node-version }}
