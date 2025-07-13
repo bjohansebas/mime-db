@@ -37,7 +37,7 @@ jobs:
     - name: Setup container environment
       run: |
         apt-get update
-        apt-get -y install sudo python3 git g++ curl
+        apt-get -y install sudo python3 git g++ curl tar unzip make libssl-dev
     - uses: actions/checkout@v4
 
     - name: Install Node.js ${{ matrix.node-version }}
@@ -46,7 +46,7 @@ jobs:
         sudo sh -c 'echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" >> /etc/apt/sources.list'
         sudo sh -c 'echo "deb http://security.ubuntu.com/ubuntu bionic-security main" >> /etc/apt/sources.list'        
         sudo apt-get update
-        sudo apt-get -y install g++-4.8 gcc-4.8 libssl-dev libssl1.0-dev python2 python-is-python2 jq
+        sudo apt-get -y install g++-4.8 gcc-4.8 libssl1.0-dev python2 python-is-python2 jq
         export CC=/usr/bin/gcc-4.8
         export CXX=/usr/bin/g++-4.8
         openssl version
