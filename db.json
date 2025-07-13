@@ -8546,9 +8546,6 @@
     "source": "iana",
     "extensions": ["ics","ifb"]
   },
-  "text/calender": {
-    "compressible": true
-  },
   "text/cmd": {
     "compressible": true
   },
